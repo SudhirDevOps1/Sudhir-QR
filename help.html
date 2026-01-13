@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & FAQ - Sudhir QR</title>
+    <meta name="description" content="Help center, FAQ, pros & cons, safety tips, and rules for using QR codes.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar glass">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <i class="fas fa-qrcode"></i>
+                <span>Sudhir QR</span>
+            </a>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">Home</a>
+                <a href="index.html#generate" class="navbar-link">Generate QR</a>
+                <a href="index.html#scan" class="navbar-link">Scan QR</a>
+                <a href="guide.html" class="navbar-link">Guide</a>
+                <a href="privacy.html" class="navbar-link">Privacy</a>
+                <a href="help.html" class="navbar-link active">Help</a>
+            </div>
+            <div class="navbar-right">
+                <button onclick="toggleTheme()" class="theme-toggle">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <div class="navbar-user hidden sm:flex">
+                    <i class="fas fa-user-circle"></i>
+                    <span>SudhirDevOps1</span>
+                </div>
+                <button onclick="toggleMobileMenu()" class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-overlay" class="mobile-overlay"></div>
+    <div id="mobile-menu" class="mobile-menu glass">
+        <div class="mobile-menu-header">
+            <span class="text-white font-bold text-xl">Menu</span>
+            <button onclick="toggleMobileMenu()" class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html" class="mobile-menu-link"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="index.html#generate" class="mobile-menu-link"><i class="fas fa-qrcode mr-2"></i>Generate QR</a>
+            <a href="index.html#scan" class="mobile-menu-link"><i class="fas fa-camera mr-2"></i>Scan QR</a>
+            <a href="guide.html" class="mobile-menu-link"><i class="fas fa-book mr-2"></i>Guide</a>
+            <a href="privacy.html" class="mobile-menu-link"><i class="fas fa-shield-alt mr-2"></i>Privacy</a>
+            <a href="help.html" class="mobile-menu-link"><i class="fas fa-question-circle mr-2"></i>Help</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-10 px-4 min-h-screen">
+        <div class="container max-w-4xl">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1><i class="fas fa-question-circle mr-3"></i>Help & FAQ</h1>
+                <p>Find answers to common questions, learn about pros & cons, and safety tips.</p>
+            </div>
+
+            <!-- Quick Navigation -->
+            <div class="card mb-6 slide-up">
+                <h3 class="font-semibold mb-4">Quick Navigation</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <a href="#faq" class="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-xl text-center hover:scale-105 transition">
+                        <i class="fas fa-question-circle text-purple-500 text-xl mb-1"></i>
+                        <p class="text-sm font-medium">FAQ</p>
+                    </a>
+                    <a href="#pros-cons" class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl text-center hover:scale-105 transition">
+                        <i class="fas fa-balance-scale text-blue-500 text-xl mb-1"></i>
+                        <p class="text-sm font-medium">Pros & Cons</p>
+                    </a>
+                    <a href="#safety" class="p-3 bg-red-100 dark:bg-red-900/30 rounded-xl text-center hover:scale-105 transition">
+                        <i class="fas fa-shield-virus text-red-500 text-xl mb-1"></i>
+                        <p class="text-sm font-medium">Safety Tips</p>
+                    </a>
+                    <a href="#rules" class="p-3 bg-green-100 dark:bg-green-900/30 rounded-xl text-center hover:scale-105 transition">
+                        <i class="fas fa-gavel text-green-500 text-xl mb-1"></i>
+                        <p class="text-sm font-medium">Rules</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div id="faq" class="card content-section slide-up" style="animation-delay: 0.1s">
+                <h2>
+                    <span class="number"><i class="fas fa-question"></i></span>
+                    Frequently Asked Questions
+                </h2>
+                
+                <div class="mt-4 space-y-2">
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>How do I generate a QR code?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Simply select the type of QR code you want (URL, WhatsApp, SMS, UPI, etc.), enter your data in the input fields, customize colors and size if desired, and click "Generate QR". Your QR code will appear instantly!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Can I scan QR codes from images?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! You can either use your camera for live scanning, upload an image from your device, or drag and drop a QR code image directly into the scanner area. All methods work great!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Is my data safe and private?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! All processing happens locally in your browser. We don't collect, store, or transmit any of your data to servers. Your information never leaves your device. Check our <a href="privacy.html" class="text-purple-500 underline">Privacy Policy</a> for details.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>What file formats can I download?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can download your QR codes as PNG (for general use, web, social media) or SVG (for high-quality printing, scaling without losing quality). Both formats maintain excellent quality.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>What is error correction level?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Error correction allows QR codes to be read even if they're partially damaged or obscured. Higher levels (H - 30%) allow more damage tolerance but create denser QR codes. Medium (M - 15%) is recommended for most uses.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Why isn't my WhatsApp QR working?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Make sure you enter the phone number with country code (e.g., +91 for India). Remove any spaces or special characters. The format should be like: +919876543210. Also ensure the number is registered on WhatsApp.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>How does UPI QR code work?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>UPI QR codes contain your UPI ID and optional amount. When scanned with any UPI app (GPay, PhonePe, Paytm), it auto-fills the payment details. The payer just needs to enter their PIN to complete payment.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Can I add a logo to my QR code?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Currently, we support color customization. For adding logos, use high error correction (H) level as it allows for more modifications while keeping the code scannable. You can overlay a small logo (up to 30% of QR area) using image editing software.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Why is my camera not working for scanning?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Make sure you've granted camera permission to the browser. On mobile, check Settings > Apps > Browser > Permissions. Also, the camera needs HTTPS to work (our site supports this). Try refreshing the page or using a different browser.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>How long do QR codes last?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Static QR codes (like the ones we generate) never expire! They're just encoded data. However, if the content they link to (like a website) goes offline, the QR code becomes useless. The QR code itself remains valid forever.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pros & Cons Section -->
+            <div id="pros-cons" class="card content-section slide-up" style="animation-delay: 0.2s">
+                <h2>
+                    <span class="number"><i class="fas fa-balance-scale"></i></span>
+                    Pros & Cons of QR Codes
+                </h2>
+                
+                <div class="pros-cons-grid mt-4">
+                    <div class="pros-box">
+                        <h3><i class="fas fa-thumbs-up mr-2"></i>Advantages</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-check text-green-500"></i>
+                                <div>
+                                    <strong>High Data Capacity</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Store up to 7,089 numeric or 4,296 alphanumeric characters</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check text-green-500"></i>
+                                <div>
+                                    <strong>Fast Scanning</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Read in milliseconds from any angle</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check text-green-500"></i>
+                                <div>
+                                    <strong>Error Correction</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Works even if up to 30% is damaged</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check text-green-500"></i>
+                                <div>
+                                    <strong>Free to Use</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">No cost to create or scan</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check text-green-500"></i>
+                                <div>
+                                    <strong>Contactless</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">No physical contact needed for data transfer</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check text-green-500"></i>
+                                <div>
+                                    <strong>Versatile</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Works on screens, paper, products, anything</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cons-box">
+                        <h3><i class="fas fa-thumbs-down mr-2"></i>Disadvantages</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-times text-red-500"></i>
+                                <div>
+                                    <strong>Requires Device</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Need smartphone or scanner to read</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-times text-red-500"></i>
+                                <div>
+                                    <strong>Security Risks</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Can link to malicious websites or content</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-times text-red-500"></i>
+                                <div>
+                                    <strong>Not Human-Readable</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Can't tell what's inside without scanning</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-times text-red-500"></i>
+                                <div>
+                                    <strong>Lighting Dependent</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Poor lighting affects scanning</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-times text-red-500"></i>
+                                <div>
+                                    <strong>Replacement Risk</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Physical codes can be covered with fake ones</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-times text-red-500"></i>
+                                <div>
+                                    <strong>Internet Needed</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">URL QRs need internet to work</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Safety Tips Section -->
+            <div id="safety" class="card content-section slide-up" style="animation-delay: 0.3s">
+                <h2>
+                    <span class="number"><i class="fas fa-shield-alt"></i></span>
+                    Safety Tips
+                </h2>
+                
+                <div class="tips-grid mt-4">
+                    <div class="tip-card">
+                        <i class="fas fa-search text-red-500"></i>
+                        <div>
+                            <h4>Verify Source</h4>
+                            <p>Only scan QR codes from trusted sources. Be suspicious of random QR codes in public places.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-link text-blue-500"></i>
+                        <div>
+                            <h4>Preview URLs</h4>
+                            <p>Always check the URL preview before opening. Look for suspicious or misspelled domains.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-user-secret text-purple-500"></i>
+                        <div>
+                            <h4>Protect Sensitive Info</h4>
+                            <p>Never encode passwords, bank details, or personal info in publicly shared QR codes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-sync-alt text-green-500"></i>
+                        <div>
+                            <h4>Keep Apps Updated</h4>
+                            <p>Use updated QR scanner apps and browsers for latest security patches.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-sticker-mule text-orange-500"></i>
+                        <div>
+                            <h4>Check for Tampering</h4>
+                            <p>Look for stickers placed over original QR codes. Scammers overlay fake codes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-credit-card text-pink-500"></i>
+                        <div>
+                            <h4>Verify Payments</h4>
+                            <p>Double-check UPI ID and amount before confirming any payment via QR.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-wifi text-cyan-500"></i>
+                        <div>
+                            <h4>WiFi Caution</h4>
+                            <p>Be careful with public WiFi QR codes. They could connect you to malicious networks.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-envelope-open-text text-yellow-500"></i>
+                        <div>
+                            <h4>Email QR Codes</h4>
+                            <p>Don't trust QR codes in suspicious emails. They could be phishing attempts.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-box danger mt-6">
+                    <h4 class="font-semibold"><i class="fas fa-exclamation-triangle mr-2"></i>Common QR Code Scams</h4>
+                    <ul class="mt-2 space-y-1 text-sm">
+                        <li>• <strong>Parking Meters:</strong> Fake QR codes placed on parking meters stealing payment info</li>
+                        <li>• <strong>Restaurant Menus:</strong> Malicious codes replacing legitimate menu QRs</li>
+                        <li>• <strong>Package Delivery:</strong> Fake "track your package" QR codes in phishing emails</li>
+                        <li>• <strong>Crypto Scams:</strong> QR codes promising free crypto but stealing wallet info</li>
+                        <li>• <strong>Event Tickets:</strong> Duplicate QR tickets sold to multiple people</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Rules Section -->
+            <div id="rules" class="card content-section slide-up" style="animation-delay: 0.4s">
+                <h2>
+                    <span class="number"><i class="fas fa-gavel"></i></span>
+                    Rules & Best Practices
+                </h2>
+                
+                <div class="mt-4 space-y-4">
+                    <div class="p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border-l-4 border-green-500">
+                        <h4 class="font-semibold text-green-700 dark:text-green-300">
+                            <i class="fas fa-check-circle mr-2"></i>DO's
+                        </h4>
+                        <ul class="mt-2 space-y-2 text-sm">
+                            <li>✅ Test your QR code with multiple devices before printing or sharing</li>
+                            <li>✅ Use appropriate error correction level for your use case</li>
+                            <li>✅ Maintain good contrast between QR and background colors</li>
+                            <li>✅ Keep a quiet zone (white margin) around the QR code</li>
+                            <li>✅ Use URL shorteners for very long links</li>
+                            <li>✅ Add a call-to-action near the QR code (e.g., "Scan to pay")</li>
+                            <li>✅ Use high-resolution images for printed materials</li>
+                            <li>✅ Consider your audience's ability to scan QR codes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border-l-4 border-red-500">
+                        <h4 class="font-semibold text-red-700 dark:text-red-300">
+                            <i class="fas fa-times-circle mr-2"></i>DON'Ts
+                        </h4>
+                        <ul class="mt-2 space-y-2 text-sm">
+                            <li>❌ Don't create QR codes for illegal or harmful content</li>
+                            <li>❌ Don't share password QR codes publicly</li>
+                            <li>❌ Don't use low contrast colors (light on light, dark on dark)</li>
+                            <li>❌ Don't invert colors (white QR on black background works poorly)</li>
+                            <li>❌ Don't make QR codes too small (minimum 2cm x 2cm)</li>
+                            <li>❌ Don't distort or stretch the QR code</li>
+                            <li>❌ Don't place QR codes on curved surfaces if possible</li>
+                            <li>❌ Don't trust QR codes from unknown sources</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border-l-4 border-blue-500">
+                        <h4 class="font-semibold text-blue-700 dark:text-blue-300">
+                            <i class="fas fa-info-circle mr-2"></i>Legal Considerations
+                        </h4>
+                        <ul class="mt-2 space-y-2 text-sm">
+                            <li>📜 Ensure you have rights to the content you're encoding</li>
+                            <li>📜 Don't use QR codes for copyright infringement</li>
+                            <li>📜 Be transparent about what the QR code contains</li>
+                            <li>📜 Don't use QR codes to deceive or defraud users</li>
+                            <li>📜 Comply with data protection regulations when collecting info via QR</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Support -->
+            <div class="card text-center slide-up" style="animation-delay: 0.5s">
+                <h3 class="text-xl font-semibold mb-2">Still Need Help?</h3>
+                <p class="mb-4">Can't find what you're looking for? Feel free to reach out!</p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <a href="mailto:support@sudhirqr.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Email Support
+                    </a>
+                    <a href="https://github.com/SudhirDevOps1" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Back to Home -->
+            <div class="text-center mt-8">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Sudhir QR. All Rights Reserved. Made with <i class="fas fa-heart text-red-400"></i> by Sudhir | @SudhirDevOps1</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            const icon = document.getElementById('theme-icon');
+            icon.classList.toggle('fa-moon', !isDark);
+            icon.classList.toggle('fa-sun', isDark);
+        }
+        
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+            document.getElementById('mobile-overlay').classList.toggle('open');
+        }
+        
+        document.getElementById('mobile-overlay').addEventListener('click', toggleMobileMenu);
+        
+        function toggleFAQ(element) {
+            // Close other FAQs
+            document.querySelectorAll('.faq-item.open').forEach(item => {
+                if (item !== element) item.classList.remove('open');
+            });
+            element.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

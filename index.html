@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudhir QR - Smart QR Code Generator & Scanner</title>
+    <meta name="description" content="Generate and scan QR codes for URL, WhatsApp, SMS, Email, UPI, WiFi, Location, vCard and more. Fast, secure and privacy friendly.">
+    <meta name="author" content="SudhirDevOps1">
+    <meta name="keywords" content="QR Code, Generator, Scanner, WhatsApp QR, UPI QR, WiFi QR, vCard QR">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- QR Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar glass">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="#" onclick="showSection('home')" class="navbar-logo">
+                <i class="fas fa-qrcode"></i>
+                <span>Sudhir QR</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="navbar-menu">
+                <a href="#" onclick="showSection('home')" class="navbar-link active" data-section="home">Home</a>
+                <a href="#" onclick="showSection('generate')" class="navbar-link" data-section="generate">Generate QR</a>
+                <a href="#" onclick="showSection('scan')" class="navbar-link" data-section="scan">Scan QR</a>
+                <a href="guide.html" class="navbar-link">Guide</a>
+                <a href="privacy.html" class="navbar-link">Privacy</a>
+                <a href="help.html" class="navbar-link">Help</a>
+            </div>
+
+            <!-- Right Side -->
+            <div class="navbar-right">
+                <button onclick="toggleTheme()" class="theme-toggle">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <div class="navbar-user hidden sm:flex">
+                    <i class="fas fa-user-circle"></i>
+                    <span>SudhirDevOps1</span>
+                </div>
+                <button onclick="toggleMobileMenu()" class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="mobile-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu glass">
+        <div class="mobile-menu-header">
+            <span class="text-white font-bold text-xl">Menu</span>
+            <button onclick="toggleMobileMenu()" class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#" onclick="showSection('home'); toggleMobileMenu();" class="mobile-menu-link">
+                <i class="fas fa-home mr-2"></i>Home
+            </a>
+            <a href="#" onclick="showSection('generate'); toggleMobileMenu();" class="mobile-menu-link">
+                <i class="fas fa-qrcode mr-2"></i>Generate QR
+            </a>
+            <a href="#" onclick="showSection('scan'); toggleMobileMenu();" class="mobile-menu-link">
+                <i class="fas fa-camera mr-2"></i>Scan QR
+            </a>
+            <a href="guide.html" class="mobile-menu-link">
+                <i class="fas fa-book mr-2"></i>Guide
+            </a>
+            <a href="privacy.html" class="mobile-menu-link">
+                <i class="fas fa-shield-alt mr-2"></i>Privacy
+            </a>
+            <a href="help.html" class="mobile-menu-link">
+                <i class="fas fa-question-circle mr-2"></i>Help
+            </a>
+        </div>
+        <div class="absolute bottom-6 left-6 text-white">
+            <i class="fas fa-user-circle mr-2"></i>SudhirDevOps1
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-10 px-4 min-h-screen">
+        <!-- Home Section -->
+        <section id="home" class="section active container">
+            <div class="hero slide-up">
+                <h1 class="hero-title">
+                    Smart QR Code
+                    <span>Generator & Scanner</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Create QR codes for URLs, WhatsApp, SMS, Email, UPI Payment, WiFi, Location, Contacts and more. 
+                    Scan any QR code instantly with camera or image upload.
+                </p>
+                <div class="hero-buttons">
+                    <button onclick="showSection('generate')" class="btn btn-primary">
+                        <i class="fas fa-plus-circle"></i>Generate QR Code
+                    </button>
+                    <button onclick="showSection('scan')" class="btn btn-secondary">
+                        <i class="fas fa-camera"></i>Scan QR Code
+                    </button>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="card feature-card slide-up" style="animation-delay: 0.1s">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #d946ef);">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast Generation</h3>
+                    <p>Generate QR codes instantly with real-time preview</p>
+                </div>
+                <div class="card feature-card slide-up" style="animation-delay: 0.2s">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>All processing happens locally in your browser</p>
+                </div>
+                <div class="card feature-card slide-up" style="animation-delay: 0.3s">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Customizable</h3>
+                    <p>Choose colors, size, and error correction level</p>
+                </div>
+                <div class="card feature-card slide-up" style="animation-delay: 0.4s">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Easy Download</h3>
+                    <p>Download as PNG or SVG format</p>
+                </div>
+            </div>
+
+            <!-- Supported QR Types -->
+            <div class="card mt-10 slide-up">
+                <h2 class="text-2xl font-bold text-center mb-8">Supported QR Code Types</h2>
+                <div class="qr-showcase-grid">
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('url')">
+                        <i class="fas fa-link text-purple-500"></i>
+                        <p>URL</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('whatsapp')">
+                        <i class="fab fa-whatsapp text-green-500"></i>
+                        <p>WhatsApp</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('sms')">
+                        <i class="fas fa-sms text-blue-500"></i>
+                        <p>SMS</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('email')">
+                        <i class="fas fa-envelope text-red-500"></i>
+                        <p>Email</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('upi')">
+                        <i class="fas fa-rupee-sign text-orange-500"></i>
+                        <p>UPI Pay</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('location')">
+                        <i class="fas fa-map-marker-alt text-pink-500"></i>
+                        <p>Location</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('wifi')">
+                        <i class="fas fa-wifi text-cyan-500"></i>
+                        <p>WiFi</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('vcard')">
+                        <i class="fas fa-address-card text-indigo-500"></i>
+                        <p>vCard</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('event')">
+                        <i class="fas fa-calendar-alt text-teal-500"></i>
+                        <p>Event</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('phone')">
+                        <i class="fas fa-phone text-emerald-500"></i>
+                        <p>Phone</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('credentials')">
+                        <i class="fas fa-key text-amber-500"></i>
+                        <p>Password</p>
+                    </div>
+                    <div class="qr-showcase-item" onclick="showSection('generate'); selectQRType('custom')">
+                        <i class="fas fa-cog text-gray-500"></i>
+                        <p>Custom</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Generate Section -->
+        <section id="generate" class="section container">
+            <h1 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+                <i class="fas fa-qrcode mr-2"></i>Generate QR Code
+            </h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Left - Input Panel -->
+                <div class="card">
+                    <!-- QR Type Selection -->
+                    <div class="mb-6">
+                        <label class="form-label">Select QR Type</label>
+                        <div class="qr-types-grid">
+                            <button onclick="selectQRType('url')" class="qr-type-btn active" data-type="url">
+                                <i class="fas fa-link"></i>
+                                <span>URL</span>
+                            </button>
+                            <button onclick="selectQRType('whatsapp')" class="qr-type-btn" data-type="whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </button>
+                            <button onclick="selectQRType('sms')" class="qr-type-btn" data-type="sms">
+                                <i class="fas fa-sms"></i>
+                                <span>SMS</span>
+                            </button>
+                            <button onclick="selectQRType('email')" class="qr-type-btn" data-type="email">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </button>
+                            <button onclick="selectQRType('upi')" class="qr-type-btn" data-type="upi">
+                                <i class="fas fa-rupee-sign"></i>
+                                <span>UPI</span>
+                            </button>
+                            <button onclick="selectQRType('location')" class="qr-type-btn" data-type="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Location</span>
+                            </button>
+                            <button onclick="selectQRType('wifi')" class="qr-type-btn" data-type="wifi">
+                                <i class="fas fa-wifi"></i>
+                                <span>WiFi</span>
+                            </button>
+                            <button onclick="selectQRType('vcard')" class="qr-type-btn" data-type="vcard">
+                                <i class="fas fa-address-card"></i>
+                                <span>vCard</span>
+                            </button>
+                            <button onclick="selectQRType('event')" class="qr-type-btn" data-type="event">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Event</span>
+                            </button>
+                            <button onclick="selectQRType('phone')" class="qr-type-btn" data-type="phone">
+                                <i class="fas fa-phone"></i>
+                                <span>Phone</span>
+                            </button>
+                            <button onclick="selectQRType('text')" class="qr-type-btn" data-type="text">
+                                <i class="fas fa-font"></i>
+                                <span>Text</span>
+                            </button>
+                            <button onclick="selectQRType('credentials')" class="qr-type-btn" data-type="credentials">
+                                <i class="fas fa-key"></i>
+                                <span>Password</span>
+                            </button>
+                            <button onclick="selectQRType('applink')" class="qr-type-btn" data-type="applink">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>App Link</span>
+                            </button>
+                            <button onclick="selectQRType('custom')" class="qr-type-btn" data-type="custom">
+                                <i class="fas fa-cog"></i>
+                                <span>Custom</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Input Forms -->
+                    <div id="input-forms">
+                        <!-- URL Form -->
+                        <div id="form-url" class="qr-form">
+                            <div class="form-group">
+                                <label class="form-label">Website URL</label>
+                                <input type="url" id="input-url" placeholder="https://example.com" class="form-input">
+                                <p class="form-hint"><i class="fas fa-info-circle"></i> Enter a valid website URL</p>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Form -->
+                        <div id="form-whatsapp" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">WhatsApp Number</label>
+                                <input type="tel" id="input-whatsapp" placeholder="+91 9876543210" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Pre-filled Message (Optional)</label>
+                                <textarea id="input-whatsapp-msg" placeholder="Hello! I found your contact..." class="form-textarea"></textarea>
+                            </div>
+                            <div class="info-box success">
+                                <p class="text-sm"><i class="fab fa-whatsapp mr-1"></i> Scan with phone camera or WhatsApp QR scanner to open chat directly</p>
+                            </div>
+                        </div>
+
+                        <!-- SMS Form -->
+                        <div id="form-sms" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" id="input-sms-phone" placeholder="+91 9876543210" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message</label>
+                                <textarea id="input-sms-msg" placeholder="Your message here..." class="form-textarea"></textarea>
+                            </div>
+                            <div class="info-box info">
+                                <p class="text-sm"><i class="fas fa-sms mr-1"></i> Scanning will open default messaging app with pre-filled number and message</p>
+                            </div>
+                        </div>
+
+                        <!-- Email Form -->
+                        <div id="form-email" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="input-email" placeholder="example@email.com" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Subject (Optional)</label>
+                                <input type="text" id="input-email-subject" placeholder="Email Subject" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Body (Optional)</label>
+                                <textarea id="input-email-body" placeholder="Email content..." class="form-textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Text Form -->
+                        <div id="form-text" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Your Text</label>
+                                <textarea id="input-text" placeholder="Enter any text you want to encode..." class="form-textarea" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Credentials Form -->
+                        <div id="form-credentials" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Username</label>
+                                <input type="text" id="input-username" placeholder="Username" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="input-password" placeholder="Password" class="form-input pr-12">
+                                    <button type="button" onclick="togglePassword()" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">
+                                        <i class="fas fa-eye" id="password-toggle-icon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="info-box warning">
+                                <p class="text-sm"><i class="fas fa-exclamation-triangle mr-1"></i> ⚠ Do not share sensitive QR publicly. Keep credentials QR secure.</p>
+                            </div>
+                        </div>
+
+                        <!-- App Link Form -->
+                        <div id="form-applink" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">App Store / Play Store Link</label>
+                                <input type="url" id="input-applink" placeholder="https://play.google.com/store/apps/..." class="form-input">
+                                <p class="form-hint"><i class="fas fa-info-circle"></i> Paste Google Play or App Store link</p>
+                            </div>
+                        </div>
+
+                        <!-- UPI Form -->
+                        <div id="form-upi" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">UPI ID</label>
+                                <input type="text" id="input-upi-id" placeholder="yourname@upi" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Payee Name</label>
+                                <input type="text" id="input-upi-name" placeholder="Your Name" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Amount (Optional)</label>
+                                <input type="number" id="input-upi-amount" placeholder="100" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Note (Optional)</label>
+                                <input type="text" id="input-upi-note" placeholder="Payment for..." class="form-input">
+                            </div>
+                            <div class="info-box success">
+                                <p class="text-sm"><i class="fas fa-rupee-sign mr-1"></i> Scan with any UPI app (GPay, PhonePe, Paytm) to make payment</p>
+                            </div>
+                        </div>
+
+                        <!-- Location Form -->
+                        <div id="form-location" class="qr-form hidden">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label class="form-label">Latitude</label>
+                                    <input type="number" id="input-lat" placeholder="28.6139" step="any" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Longitude</label>
+                                    <input type="number" id="input-lng" placeholder="77.2090" step="any" class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Location Name (Optional)</label>
+                                <input type="text" id="input-loc-name" placeholder="My Location" class="form-input">
+                            </div>
+                            <button type="button" onclick="getCurrentLocation()" class="btn btn-secondary w-full">
+                                <i class="fas fa-crosshairs"></i> Get Current Location
+                            </button>
+                            <div class="info-box info mt-3">
+                                <p class="text-sm"><i class="fas fa-map-marker-alt mr-1"></i> Scan to open location in Google Maps</p>
+                            </div>
+                        </div>
+
+                        <!-- WiFi Form -->
+                        <div id="form-wifi" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Network Name (SSID)</label>
+                                <input type="text" id="input-wifi-ssid" placeholder="MyWiFi" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="text" id="input-wifi-pass" placeholder="WiFi Password" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Security Type</label>
+                                <select id="input-wifi-type" class="form-select">
+                                    <option value="WPA">WPA/WPA2</option>
+                                    <option value="WEP">WEP</option>
+                                    <option value="nopass">None (Open)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="input-wifi-hidden" class="w-4 h-4">
+                                    <span>Hidden Network</span>
+                                </label>
+                            </div>
+                            <div class="info-box info">
+                                <p class="text-sm"><i class="fas fa-wifi mr-1"></i> Scan to auto-connect to WiFi network</p>
+                            </div>
+                        </div>
+
+                        <!-- vCard Form -->
+                        <div id="form-vcard" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" id="input-vcard-name" placeholder="John Doe" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" id="input-vcard-phone" placeholder="+91 9876543210" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="input-vcard-email" placeholder="john@example.com" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Organization</label>
+                                <input type="text" id="input-vcard-org" placeholder="Company Name" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Job Title</label>
+                                <input type="text" id="input-vcard-title" placeholder="Software Engineer" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Website</label>
+                                <input type="url" id="input-vcard-url" placeholder="https://example.com" class="form-input">
+                            </div>
+                            <div class="info-box info">
+                                <p class="text-sm"><i class="fas fa-address-card mr-1"></i> Scan to save contact to phone</p>
+                            </div>
+                        </div>
+
+                        <!-- Event Form -->
+                        <div id="form-event" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Event Title *</label>
+                                <input type="text" id="input-event-title" placeholder="Meeting" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Start Date & Time *</label>
+                                <input type="datetime-local" id="input-event-start" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">End Date & Time</label>
+                                <input type="datetime-local" id="input-event-end" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" id="input-event-location" placeholder="Conference Room" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea id="input-event-desc" placeholder="Event details..." class="form-textarea"></textarea>
+                            </div>
+                            <div class="info-box info">
+                                <p class="text-sm"><i class="fas fa-calendar-alt mr-1"></i> Scan to add event to calendar</p>
+                            </div>
+                        </div>
+
+                        <!-- Phone Form -->
+                        <div id="form-phone" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" id="input-phone" placeholder="+91 9876543210" class="form-input">
+                            </div>
+                            <div class="info-box info">
+                                <p class="text-sm"><i class="fas fa-phone mr-1"></i> Scan to directly call this number</p>
+                            </div>
+                        </div>
+
+                        <!-- Custom Form -->
+                        <div id="form-custom" class="qr-form hidden">
+                            <div class="form-group">
+                                <label class="form-label">Custom Data</label>
+                                <textarea id="input-custom" placeholder="Enter any custom data, JSON, or encoded string..." class="form-textarea" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customization Options -->
+                    <div class="customization-panel mt-6">
+                        <h3 class="font-semibold mb-4"><i class="fas fa-sliders-h mr-2"></i>Customization</h3>
+                        <div class="customization-grid">
+                            <div>
+                                <label class="form-label text-sm">QR Color</label>
+                                <input type="color" id="qr-color" value="#000000" class="color-input">
+                            </div>
+                            <div>
+                                <label class="form-label text-sm">Background</label>
+                                <input type="color" id="qr-bg-color" value="#ffffff" class="color-input">
+                            </div>
+                            <div>
+                                <label class="form-label text-sm">Size: <span id="size-value">200</span>px</label>
+                                <input type="range" id="qr-size" min="100" max="500" value="200" class="range-input">
+                            </div>
+                            <div>
+                                <label class="form-label text-sm">Error Correction</label>
+                                <select id="qr-error" class="form-select text-sm p-2">
+                                    <option value="L">Low (7%)</option>
+                                    <option value="M" selected>Medium (15%)</option>
+                                    <option value="Q">Quartile (25%)</option>
+                                    <option value="H">High (30%)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <button onclick="generateQR()" class="btn btn-primary flex-1">
+                            <i class="fas fa-qrcode"></i>Generate QR
+                        </button>
+                        <button onclick="clearForm()" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i>Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right - QR Display & History -->
+                <div>
+                    <!-- QR Display -->
+                    <div class="card mb-6">
+                        <h3 class="font-semibold text-center mb-4">Generated QR Code</h3>
+                        <div id="qr-result" class="qr-display">
+                            <div class="qr-placeholder">
+                                <i class="fas fa-qrcode"></i>
+                                <p>Your QR code will appear here</p>
+                            </div>
+                        </div>
+                        
+                        <div id="qr-data-display" class="hidden mt-4 p-3 bg-gray-100 dark:bg-gray-800 rounded-xl">
+                            <p class="text-sm font-medium mb-1">Encoded Data:</p>
+                            <p id="encoded-data" class="text-sm text-gray-600 dark:text-gray-300 break-all"></p>
+                        </div>
+
+                        <!-- Download & Action Buttons -->
+                        <div id="qr-actions" class="hidden mt-4 flex flex-wrap justify-center gap-3">
+                            <button onclick="downloadQR('png')" class="btn" style="background: #8b5cf6; color: white;">
+                                <i class="fas fa-download"></i>PNG
+                            </button>
+                            <button onclick="downloadQR('svg')" class="btn" style="background: #3b82f6; color: white;">
+                                <i class="fas fa-download"></i>SVG
+                            </button>
+                            <button onclick="copyData()" class="btn" style="background: #10b981; color: white;">
+                                <i class="fas fa-copy"></i>Copy
+                            </button>
+                            <button onclick="addToHistory()" class="btn" style="background: #f59e0b; color: white;">
+                                <i class="fas fa-history"></i>Save
+                            </button>
+                        </div>
+
+                        <!-- Scan Guide -->
+                        <div id="scan-guide" class="hidden info-box info mt-4">
+                            <p class="font-semibold mb-2"><i class="fas fa-info-circle mr-1"></i> How & Where to Scan This QR</p>
+                            <ul class="text-sm space-y-1">
+                                <li>• Open phone camera and point at QR</li>
+                                <li>• Use WhatsApp > Settings > QR Scanner</li>
+                                <li>• Use any QR scanner app</li>
+                                <li>• Upload to online QR decoder</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- History -->
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-semibold"><i class="fas fa-history mr-2"></i>Recent QR Codes</h3>
+                            <button onclick="clearHistory()" class="text-sm text-red-500 hover:text-red-600">
+                                <i class="fas fa-trash mr-1"></i>Clear All
+                            </button>
+                        </div>
+                        <div id="history-list" class="history-list">
+                            <p class="text-gray-400 text-center py-4">No history yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scan Section -->
+        <section id="scan" class="section container max-w-4xl">
+            <h1 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+                <i class="fas fa-camera mr-2"></i>Scan QR Code
+            </h1>
+
+            <div class="card">
+                <!-- Scan Options -->
+                <div class="flex flex-wrap justify-center gap-4 mb-6">
+                    <button onclick="startCameraScan()" class="btn btn-primary">
+                        <i class="fas fa-camera"></i>Camera Scan
+                    </button>
+                    <button onclick="document.getElementById('file-upload').click()" class="btn" style="background: #3b82f6; color: white;">
+                        <i class="fas fa-image"></i>Upload Image
+                    </button>
+                    <input type="file" id="file-upload" accept="image/*" class="hidden" onchange="scanFromFile(event)">
+                </div>
+
+                <!-- Camera Scanner -->
+                <div id="camera-container" class="hidden">
+                    <div id="reader" class="rounded-xl overflow-hidden mb-4"></div>
+                    <button onclick="stopCameraScan()" class="btn btn-danger w-full">
+                        <i class="fas fa-stop"></i>Stop Camera
+                    </button>
+                </div>
+
+                <!-- Drag & Drop Area -->
+                <div id="drop-zone" class="scanner-dropzone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="document.getElementById('file-upload').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p class="text-lg font-medium mb-2">Drag & Drop QR Image Here</p>
+                    <p class="text-gray-500">or click to browse files</p>
+                </div>
+
+                <!-- Scan Result -->
+                <div id="scan-result" class="hidden mt-6">
+                    <div class="info-box success">
+                        <h3 class="font-semibold mb-2">
+                            <i class="fas fa-check-circle mr-2"></i>QR Code Detected!
+                        </h3>
+                        <p id="scan-result-text" class="break-all mb-4"></p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="copyScanResult()" class="btn" style="background: #3b82f6; color: white;">
+                                <i class="fas fa-copy"></i>Copy
+                            </button>
+                            <button id="open-link-btn" onclick="openScanResult()" class="btn btn-success hidden">
+                                <i class="fas fa-external-link-alt"></i>Open Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scan Tips -->
+                <div class="customization-panel mt-6">
+                    <h3 class="font-semibold mb-3"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Quick Tips</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Ensure QR code is well-lit and in focus</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Hold camera steady for best results</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Supports all standard QR code formats</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Auto-detects URLs, text, and encoded data</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <h3><i class="fas fa-qrcode mr-2"></i>Sudhir QR</h3>
+                    <p>Fast • Secure • Privacy Friendly QR Tool</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links-grid">
+                        <a href="#" onclick="showSection('home')" class="footer-link">Home</a>
+                        <a href="#" onclick="showSection('generate')" class="footer-link">Generate QR</a>
+                        <a href="#" onclick="showSection('scan')" class="footer-link">Scan QR</a>
+                        <a href="guide.html" class="footer-link">Guide</a>
+                        <a href="privacy.html" class="footer-link">Privacy</a>
+                        <a href="help.html" class="footer-link">Help</a>
+                    </div>
+                </div>
+
+                <!-- Social -->
+                <div class="footer-social">
+                    <h4>Connect with Sudhir</h4>
+                    <div class="social-icons">
+                        <a href="https://github.com/SudhirDevOps1" target="_blank" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/SudhirDevOps1" target="_blank" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/SudhirDevOps1" target="_blank" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <p class="text-white/70 text-sm mt-4">
+                        <i class="fas fa-user mr-2"></i>Sudhir | @SudhirDevOps1
+                    </p>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>© 2026 Sudhir QR. All Rights Reserved. Made with <i class="fas fa-heart text-red-400"></i> by Sudhir</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Main JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>

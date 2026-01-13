@@ -1,0 +1,171 @@
+तुम एक Senior Full-Stack Developer + i18n (Internationalization) Expert हो।
+
+मुझे एक ENTERPRISE-GRADE
+“Smart QR Generator & Scanner Platform”
+बनाकर दो जिसमें MULTIPLE LANGUAGE SUPPORT fully working हो।
+
+⚠️ DEFAULT THEME:
+- DARK MODE always enabled
+- Premium neon accent colors
+
+------------------------------------------------
+🌍 MULTI-LANGUAGE SUPPORT (VERY IMPORTANT)
+------------------------------------------------
+App में built-in Language Switcher हो:
+
+Supported Languages:
+✔ English (Default)
+✔ Hindi
+✔ Hinglish
+✔ Urdu
+✔ Bengali
+✔ Tamil
+✔ Telugu
+
+Language change करते ही:
+✔ पूरा UI text instantly translate हो
+✔ Page reload ना हो
+✔ User preference localStorage में save हो
+
+------------------------------------------------
+📁 LANGUAGE FILE STRUCTURE
+------------------------------------------------
+/lang/
+  ├── en.json
+  ├── hi.json
+  ├── hinglish.json
+  ├── ur.json
+  ├── bn.json
+  ├── ta.json
+  ├── te.json
+
+Each JSON include:
+✔ Navbar labels
+✔ Buttons
+✔ Form placeholders
+✔ Error messages
+✔ Guides text
+✔ Footer text
+
+------------------------------------------------
+🎯 QR GENERATION TYPES (FULL SET)
+------------------------------------------------
+Support ALL QR types:
+
+1️⃣ Website / URL  
+2️⃣ Plain Text  
+3️⃣ WhatsApp  
+4️⃣ SMS  
+5️⃣ Email  
+6️⃣ Phone Call  
+7️⃣ UPI Payment  
+8️⃣ Location (Google Maps)
+9️⃣ Wi-Fi QR (Open / WPA / WPA2 / WPA3)
+🔟 Username + Password QR
+1️⃣1️⃣ App Links
+1️⃣2️⃣ Custom Data
+
+❌ Invalid input → QR shows:
+“NOT VALID DATA”
+(Language-wise translated)
+
+------------------------------------------------
+📷 ADVANCED QR SCANNER
+------------------------------------------------
+✔ Camera scan
+✔ Gallery upload
+✔ Drag & drop
+✔ Auto decode
+✔ Copy / Open result
+
+------------------------------------------------
+🧩 PROJECT STRUCTURE
+------------------------------------------------
+/index.html
+
+/css/
+  ├── main.css
+  ├── dark-theme.css
+  ├── animations.css
+
+/js/
+  ├── app.js
+  ├── generator.js
+  ├── scanner.js
+  ├── wifi.js
+  ├── upi.js
+  ├── location.js
+  ├── i18n.js        ← Language engine
+
+/lang/
+  ├── en.json
+  ├── hi.json
+  ├── hinglish.json
+  ├── ur.json
+  ├── bn.json
+  ├── ta.json
+  ├── te.json
+
+/pages/
+  ├── privacy.html
+  ├── pros-cons.html
+  ├── safety-tips.html
+  ├── usage-rules.html
+  ├── guide.html
+  ├── help.html
+
+/README.md
+
+------------------------------------------------
+📘 CONTENT PAGES (MULTI-LANG)
+------------------------------------------------
+Each page must:
+✔ Load language dynamically
+✔ Use same language JSON
+✔ No hard-coded text
+
+------------------------------------------------
+🧭 NAVBAR
+------------------------------------------------
+Logo: Sudhir QR
+
+Menu:
+- Home
+- Generate
+- Scan
+- Guide
+- Privacy
+- Help
+
+Right Side:
+🌐 Language Dropdown
+👤 SudhirDevOps1
+
+------------------------------------------------
+📌 FOOTER
+------------------------------------------------
+✔ Name: Sudhir Singh
+✔ Username: SudhirDevOps1
+✔ © 2026
+✔ Multi-language footer text
+
+------------------------------------------------
+⚙ EXTRA FEATURES
+------------------------------------------------
+✔ QR download
+✔ QR color & logo
+✔ Error correction
+✔ QR history
+✔ Offline support
+✔ LocalStorage based settings
+
+------------------------------------------------
+📌 FINAL RULES
+------------------------------------------------
+✔ Clean architecture
+✔ Fully working
+✔ Production ready
+✔ International UX standard
+✔ No placeholder logic
+
+अब पूरा COMPLETE MULTI-LANGUAGE PROJECT generate करो।

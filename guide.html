@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide - Sudhir QR</title>
+    <meta name="description" content="Complete guide on how to use QR codes, scanning methods, and best practices.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar glass">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <i class="fas fa-qrcode"></i>
+                <span>Sudhir QR</span>
+            </a>
+            <div class="navbar-menu">
+                <a href="index.html" class="navbar-link">Home</a>
+                <a href="index.html#generate" class="navbar-link">Generate QR</a>
+                <a href="index.html#scan" class="navbar-link">Scan QR</a>
+                <a href="guide.html" class="navbar-link active">Guide</a>
+                <a href="privacy.html" class="navbar-link">Privacy</a>
+                <a href="help.html" class="navbar-link">Help</a>
+            </div>
+            <div class="navbar-right">
+                <button onclick="toggleTheme()" class="theme-toggle">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <div class="navbar-user hidden sm:flex">
+                    <i class="fas fa-user-circle"></i>
+                    <span>SudhirDevOps1</span>
+                </div>
+                <button onclick="toggleMobileMenu()" class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-overlay" class="mobile-overlay"></div>
+    <div id="mobile-menu" class="mobile-menu glass">
+        <div class="mobile-menu-header">
+            <span class="text-white font-bold text-xl">Menu</span>
+            <button onclick="toggleMobileMenu()" class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html" class="mobile-menu-link"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="index.html#generate" class="mobile-menu-link"><i class="fas fa-qrcode mr-2"></i>Generate QR</a>
+            <a href="index.html#scan" class="mobile-menu-link"><i class="fas fa-camera mr-2"></i>Scan QR</a>
+            <a href="guide.html" class="mobile-menu-link"><i class="fas fa-book mr-2"></i>Guide</a>
+            <a href="privacy.html" class="mobile-menu-link"><i class="fas fa-shield-alt mr-2"></i>Privacy</a>
+            <a href="help.html" class="mobile-menu-link"><i class="fas fa-question-circle mr-2"></i>Help</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-10 px-4 min-h-screen">
+        <div class="container max-w-4xl">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1><i class="fas fa-book mr-3"></i>Complete Guide</h1>
+                <p>Everything you need to know about QR codes - how they work, how to use them, and best practices.</p>
+            </div>
+
+            <!-- How QR Codes Work -->
+            <div class="card content-section slide-up">
+                <h2>
+                    <span class="number">1</span>
+                    How QR Codes Work
+                </h2>
+                <p class="mb-4">
+                    QR (Quick Response) codes are two-dimensional barcodes invented in 1994 by Denso Wave, a Japanese company. 
+                    Unlike traditional barcodes that can only store data horizontally, QR codes store information both 
+                    horizontally and vertically, allowing them to hold significantly more data.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="tip-card">
+                        <i class="fas fa-database text-purple-500"></i>
+                        <div>
+                            <h4>Data Encoding</h4>
+                            <p>Information is converted to binary and arranged in specific patterns</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-shield-alt text-blue-500"></i>
+                        <div>
+                            <h4>Error Correction</h4>
+                            <p>Reed-Solomon codes allow recovery even if up to 30% is damaged</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-bolt text-yellow-500"></i>
+                        <div>
+                            <h4>Fast Scanning</h4>
+                            <p>Can be read instantly from any angle using position patterns</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                    <h4 class="font-semibold mb-3">QR Code Anatomy</h4>
+                    <ul class="text-sm space-y-2">
+                        <li><strong>Position Patterns:</strong> Three large squares at corners for orientation detection</li>
+                        <li><strong>Alignment Pattern:</strong> Smaller square(s) for size and distortion correction</li>
+                        <li><strong>Timing Pattern:</strong> Alternating modules for coordinate calibration</li>
+                        <li><strong>Format Information:</strong> Error correction level and mask pattern</li>
+                        <li><strong>Data Area:</strong> The actual encoded information</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- How to Scan QR Codes -->
+            <div class="card content-section slide-up" style="animation-delay: 0.1s">
+                <h2>
+                    <span class="number">2</span>
+                    How to Scan QR Codes
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+                        <h4 class="font-semibold mb-3"><i class="fas fa-camera text-blue-500 mr-2"></i>Using Phone Camera</h4>
+                        <ol class="text-sm space-y-2 list-decimal ml-4">
+                            <li>Open your phone's default camera app</li>
+                            <li>Point the camera at the QR code</li>
+                            <li>Hold steady until it detects the code</li>
+                            <li>Tap the notification/link that appears</li>
+                            <li>The content will open automatically</li>
+                        </ol>
+                        <p class="text-xs mt-3 text-gray-500">Works on iPhone (iOS 11+) and Android (8.0+)</p>
+                    </div>
+                    
+                    <div class="p-4 bg-green-50 dark:bg-green-900/20 rounded-xl">
+                        <h4 class="font-semibold mb-3"><i class="fab fa-whatsapp text-green-500 mr-2"></i>Using WhatsApp</h4>
+                        <ol class="text-sm space-y-2 list-decimal ml-4">
+                            <li>Open WhatsApp</li>
+                            <li>Tap the three dots menu (Android) or Settings (iOS)</li>
+                            <li>Select "Linked Devices" or "WhatsApp Web"</li>
+                            <li>Tap the QR code scanner icon</li>
+                            <li>Point at the QR code</li>
+                        </ol>
+                        <p class="text-xs mt-3 text-gray-500">For WhatsApp chat QR codes only</p>
+                    </div>
+                    
+                    <div class="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl">
+                        <h4 class="font-semibold mb-3"><i class="fas fa-image text-purple-500 mr-2"></i>From Gallery/Screenshot</h4>
+                        <ol class="text-sm space-y-2 list-decimal ml-4">
+                            <li>Take a screenshot of the QR code</li>
+                            <li>Use our scanner on this website</li>
+                            <li>Click "Upload Image" button</li>
+                            <li>Select the image from gallery</li>
+                            <li>View the decoded result</li>
+                        </ol>
+                        <p class="text-xs mt-3 text-gray-500">Works with any QR code image</p>
+                    </div>
+                    
+                    <div class="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl">
+                        <h4 class="font-semibold mb-3"><i class="fas fa-mobile-alt text-orange-500 mr-2"></i>Using Google Lens</h4>
+                        <ol class="text-sm space-y-2 list-decimal ml-4">
+                            <li>Open Google app or Google Lens</li>
+                            <li>Point camera at the QR code</li>
+                            <li>Or select image from gallery</li>
+                            <li>Lens will detect and decode</li>
+                            <li>Follow the displayed action</li>
+                        </ol>
+                        <p class="text-xs mt-3 text-gray-500">Available on Android and iOS</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Code Types Explained -->
+            <div class="card content-section slide-up" style="animation-delay: 0.2s">
+                <h2>
+                    <span class="number">3</span>
+                    QR Code Types Explained
+                </h2>
+                
+                <div class="space-y-4 mt-4">
+                    <div class="p-4 border-l-4 border-purple-500 bg-gray-50 dark:bg-gray-800 rounded-r-xl">
+                        <h4 class="font-semibold"><i class="fas fa-link text-purple-500 mr-2"></i>URL QR Code</h4>
+                        <p class="text-sm mt-1">Encodes website links. When scanned, opens the URL in a browser.</p>
+                        <code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-2 inline-block">https://example.com</code>
+                    </div>
+                    
+                    <div class="p-4 border-l-4 border-green-500 bg-gray-50 dark:bg-gray-800 rounded-r-xl">
+                        <h4 class="font-semibold"><i class="fab fa-whatsapp text-green-500 mr-2"></i>WhatsApp QR Code</h4>
+                        <p class="text-sm mt-1">Opens WhatsApp chat with specified number and optional message.</p>
+                        <code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-2 inline-block">https://wa.me/919876543210?text=Hello</code>
+                    </div>
+                    
+                    <div class="p-4 border-l-4 border-orange-500 bg-gray-50 dark:bg-gray-800 rounded-r-xl">
+                        <h4 class="font-semibold"><i class="fas fa-rupee-sign text-orange-500 mr-2"></i>UPI Payment QR</h4>
+                        <p class="text-sm mt-1">Enables instant UPI payments through apps like GPay, PhonePe, Paytm.</p>
+                        <code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-2 inline-block">upi://pay?pa=name@upi&pn=Name&am=100&cu=INR</code>
+                    </div>
+                    
+                    <div class="p-4 border-l-4 border-cyan-500 bg-gray-50 dark:bg-gray-800 rounded-r-xl">
+                        <h4 class="font-semibold"><i class="fas fa-wifi text-cyan-500 mr-2"></i>WiFi QR Code</h4>
+                        <p class="text-sm mt-1">Auto-connects to WiFi network when scanned.</p>
+                        <code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-2 inline-block">WIFI:T:WPA;S:NetworkName;P:Password;;</code>
+                    </div>
+                    
+                    <div class="p-4 border-l-4 border-pink-500 bg-gray-50 dark:bg-gray-800 rounded-r-xl">
+                        <h4 class="font-semibold"><i class="fas fa-map-marker-alt text-pink-500 mr-2"></i>Location QR Code</h4>
+                        <p class="text-sm mt-1">Opens location in maps application.</p>
+                        <code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-2 inline-block">geo:28.6139,77.2090</code>
+                    </div>
+                    
+                    <div class="p-4 border-l-4 border-indigo-500 bg-gray-50 dark:bg-gray-800 rounded-r-xl">
+                        <h4 class="font-semibold"><i class="fas fa-address-card text-indigo-500 mr-2"></i>vCard QR Code</h4>
+                        <p class="text-sm mt-1">Saves contact information directly to phone.</p>
+                        <code class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-2 inline-block">BEGIN:VCARD...END:VCARD</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Correction Levels -->
+            <div class="card content-section slide-up" style="animation-delay: 0.3s">
+                <h2>
+                    <span class="number">4</span>
+                    Error Correction Levels
+                </h2>
+                <p class="mb-4">
+                    QR codes use Reed-Solomon error correction to remain readable even when partially damaged or obscured.
+                </p>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 dark:bg-gray-800">
+                                <th class="p-3 text-left rounded-tl-xl">Level</th>
+                                <th class="p-3 text-left">Recovery</th>
+                                <th class="p-3 text-left">Best For</th>
+                                <th class="p-3 text-left rounded-tr-xl">Data Capacity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b dark:border-gray-700">
+                                <td class="p-3 font-semibold">L (Low)</td>
+                                <td class="p-3">~7%</td>
+                                <td class="p-3">Clean environment, maximum data</td>
+                                <td class="p-3 text-green-500">Highest</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-700">
+                                <td class="p-3 font-semibold">M (Medium)</td>
+                                <td class="p-3">~15%</td>
+                                <td class="p-3">General purpose (Recommended)</td>
+                                <td class="p-3 text-yellow-500">High</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-700">
+                                <td class="p-3 font-semibold">Q (Quartile)</td>
+                                <td class="p-3">~25%</td>
+                                <td class="p-3">Industrial, outdoor use</td>
+                                <td class="p-3 text-orange-500">Medium</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold rounded-bl-xl">H (High)</td>
+                                <td class="p-3">~30%</td>
+                                <td class="p-3">Logo overlay, harsh conditions</td>
+                                <td class="p-3 text-red-500 rounded-br-xl">Lowest</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="card content-section slide-up" style="animation-delay: 0.4s">
+                <h2>
+                    <span class="number">5</span>
+                    Best Practices
+                </h2>
+                
+                <div class="tips-grid mt-4">
+                    <div class="tip-card">
+                        <i class="fas fa-expand-arrows-alt text-blue-500"></i>
+                        <div>
+                            <h4>Size Matters</h4>
+                            <p>Minimum 2cm x 2cm for printed codes. Larger for distance scanning.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-adjust text-purple-500"></i>
+                        <div>
+                            <h4>High Contrast</h4>
+                            <p>Use dark foreground on light background for best readability.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-border-all text-green-500"></i>
+                        <div>
+                            <h4>Quiet Zone</h4>
+                            <p>Keep white margin around QR code (at least 4 modules wide).</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-check-double text-orange-500"></i>
+                        <div>
+                            <h4>Test Before Use</h4>
+                            <p>Always scan your QR code with multiple devices before printing.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-link text-pink-500"></i>
+                        <div>
+                            <h4>Short URLs</h4>
+                            <p>Use URL shorteners for long links to create simpler QR codes.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-print text-cyan-500"></i>
+                        <div>
+                            <h4>Print Quality</h4>
+                            <p>Use high resolution (300 DPI+) for printed QR codes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Home -->
+            <div class="text-center mt-8">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Sudhir QR. All Rights Reserved. Made with <i class="fas fa-heart text-red-400"></i> by Sudhir | @SudhirDevOps1</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            const icon = document.getElementById('theme-icon');
+            icon.classList.toggle('fa-moon', !isDark);
+            icon.classList.toggle('fa-sun', isDark);
+        }
+        
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        // Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+            document.getElementById('mobile-overlay').classList.toggle('open');
+        }
+        
+        document.getElementById('mobile-overlay').addEventListener('click', toggleMobileMenu);
+    </script>
+</body>
+</html>
